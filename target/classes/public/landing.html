@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LandingPage</title>
+    <link rel="stylesheet" href="./style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="motherContainer">
+        <div class="centeredContainer">
+            <div class="logo">
+                <img src="./images/MatrixLog.png" alt="Matrix">
+            </div>
+            <div class="narrativeText">
+                <div class="centeredText">
+                    <p id="typewriter">
+                        60 minutes. 4 niveaux. Une seule issue. <br>
+                        Les Matrixiens, codeurs d’élite, sont piégés dans une tour contrôlée par une IA devenue hostile.
+                        Pour
+                        survivre, ils doivent gravir chaque niveau en résolvant des défis en C. <br>Chaque quiz réussi,
+                        une clé
+                        gagnée. Chaque clé, un pas vers la liberté. <br>
+                        Le compte à rebours est lancé!
+                    </p>
+
+                </div>
+                <div class="buttons">
+                    <a href="./register.html"><Button>Register</Button></a>
+                    <a href="./login.html"><Button>Login</Button></a>
+                </div>
+            </div>
+            <div class="solid">
+                <img src="./images/solid.png" alt="">
+            </div>
+
+        </div>
+    </div>
+
+
+    <script>
+        const element = document.getElementById("typewriter");
+        const fullHTML = element.innerHTML;
+        element.innerHTML = "";
+
+        let i = 0;
+        function typeWriter() {
+            if (i < fullHTML.length) {
+                // Pour garder les balises intactes
+                if (fullHTML[i] === "<") {
+                    const closing = fullHTML.indexOf(">", i);
+                    element.innerHTML += fullHTML.slice(i, closing + 1);
+                    i = closing + 1;
+                } else {
+                    element.innerHTML += fullHTML[i];
+                    i++;
+                }
+                setTimeout(typeWriter, 30);
+            }
+        }
+
+        typeWriter();
+    </script>
+
+
+
+</body>
+
+</html>
