@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&display=swap');
+
+:root {
+  --main-bg-color: #14133F;
+  --gradient-start: #6A4A75;
+  --gradient-end: #DC755F;
+  --glass-bg: rgba(255, 255, 255, 0.1);
+  --glass-bg-hover: rgba(255, 255, 255, 0.2);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --glass-shadow: rgba(0, 0, 0, 0.1);
+  --glass-shadow-hover: rgba(0, 0, 0, 0.2);
+  --text-color: white;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: var(--main-bg-color);
+  color: var(--text-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.container {
+  width: 90vw;
+  max-width: 1100px;
+  background-color: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-shadow: 0 4px 30px var(--glass-shadow);
+  padding: 2em;
+  overflow-y: auto;
+  max-height: 95vh;
+}
+
+header h1 {
+  font-size: 2em;
+  text-align: center;
+  margin-bottom: 1.5em;
+}
+
+.admin-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+}
+
+.form-group {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 1.5em;
+  border-radius: 12px;
+  border: 1px solid var(--glass-border);
+}
+
+.form-group h2 {
+  margin-bottom: 1em;
+}
+
+input, textarea, select {
+  width: 100%;
+  padding: 0.8em;
+  margin-bottom: 1em;
+  border-radius: 8px;
+  border: 1px solid var(--glass-border);
+  background-color: #1e1e1e;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+button {
+  padding: 0.8em 1.5em;
+  font-size: 1em;
+  background: var(--glass-bg);
+  color: var(--text-color);
+  border: 1px solid var(--glass-border);
+  border-radius: 50px;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+button:hover {
+  background: var(--glass-bg-hover);
+  box-shadow: 0 6px 40px var(--glass-shadow-hover);
+}
+
+.levels-list ul {
+  list-style: none;
+}
+
+.levels-list li {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--glass-border);
+  margin-bottom: 1em;
+  padding: 1em;
+  border-radius: 12px;
+}

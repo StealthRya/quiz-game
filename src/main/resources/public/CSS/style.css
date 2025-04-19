@@ -1,0 +1,357 @@
+:root {
+    /* Couleurs principales */
+    --main-bg-color: #14133F;
+    --gradient-start: #6A4A75;
+    --gradient-end: #DC755F;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-bg-hover: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+    --glass-shadow-hover: rgba(0, 0, 0, 0.2);
+    --white: white;
+    --text-color: white;
+    --btn-bg-hover: rgba(255, 255, 255, 0.589);
+    --level-bg: rgba(255, 255, 255, 0.50);
+    --level-box: white;
+    --level-text: black;
+}
+
+/* ---------------GLOBAL--------------- */
+body {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+    overflow-y: hidden;
+}
+
+.motherContainer {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.centeredContainer,
+.registerCenteredContainer,
+.dashboardCenteredContainer {
+    width: 1015px;
+    height: 560px;
+    background-color: var(--main-bg-color);
+    border-radius: 12px;
+}
+
+.logo {
+    height: 13vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-left: 1em;
+}
+
+.solid {
+    position: absolute;
+    top: 50vh;
+    left: 67vw;
+}
+
+.narrativeText {
+    height: 60vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    position: relative;
+    z-index: 1;
+    font-family: 'Orbitron', sans-serif;
+}
+
+.centeredText {
+    height: 90%;
+    width: 702px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5em;
+}
+
+.buttons {
+    height: 20%;
+    width: 702px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.buttons button {
+    width: 226px;
+}
+
+.buttons button,
+.registerRight form button {
+    height: 56px;
+    border: none;
+    border-radius: 50px;
+    font-size: 1em;
+    color: var(--text-color);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 4px 30px var(--glass-shadow);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.buttons button:hover,
+.registerRight form button:hover {
+    background: var(--glass-bg-hover);
+    box-shadow: 0 6px 40px var(--glass-shadow-hover);
+}
+
+
+/* ---------------REGISTER PAGE--------------- */
+.registerCenteredContainer {
+    display: flex;
+}
+
+.registerLeft {
+    height: 100%;
+    width: 500px;
+    padding: 1em;
+}
+
+.registerRight {
+    height: 100%;
+    width: 100%;
+}
+
+.registerRight h1 {
+    color: var(--text-color);
+    font-family: 'Audiowide', sans-serif;
+}
+
+.registerRight form {
+    height: 70%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.registerRight form input {
+    padding: 0.2em;
+    height: 7vh;
+    width: 95%;
+    border-radius: 8px;
+    border: none;
+    outline: none;
+    font-size: 1em;
+}
+
+.registerRight form button {
+    margin-top: 2vh;
+    width: 97%;
+}
+
+.loginLink {
+    width: 100%;
+}
+
+.registerRight h6 {
+    color: var(--text-color);
+    font-size: 1em;
+    font-weight: lighter;
+}
+
+.registerRight h6 a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+/* ---------------LOGIN PAGE--------------- */
+.toggle-password {
+    cursor: pointer;
+    color: var(--text-color);
+    text-align: right;
+    padding-right: 1.5em;
+    text-decoration: underline;
+}
+
+.toggle-password:hover {
+    text-decoration: none;
+}
+
+
+/* ---------------DASHBOARD PAGE--------------- */
+.dashboardCenteredContainer {
+    display: flex;
+}
+
+.dashboardLeft {
+    height: 100%;
+    width: 15%;
+    display: flex;
+}
+
+.dshbLeft {
+    width: 99%;
+    padding: 1em;
+}
+
+.dshbRight {
+    background-color: var(--white);
+    width: 1%;
+}
+
+.menuBtnDshb {
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.navigationbtn {
+    padding-top: 3em;
+    height: 18%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.btnNav {
+    background-color: transparent;
+    border: none;
+    color: var(--text-color);
+    font-size: large;
+    height: 5vh;
+    width: 100%;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.btnNav:hover {
+    background-color: var(--btn-bg-hover);
+    color: var(--text-color);
+}
+
+.fas {
+    margin-right: 1em;
+}
+
+.dashboardRight {
+    height: 100%;
+    width: 85%;
+    padding-left: 2em;
+}
+
+.welcome h3,
+.welcome span {
+    color: var(--text-color);
+}
+
+.welcome h3 {
+    font-family: 'Orbitron', sans-serif;
+    font-weight: lighter;
+}
+
+.welcome span {
+    font-weight: bold;
+}
+
+.states {
+    width: 96%;
+    height: 45vh;
+    display: flex;
+}
+
+.stLeft {
+    height: 100%;
+    width: 70%;
+    background: linear-gradient(to bottom, var(--gradient-start), var(--gradient-end));
+    border-radius: 18px;
+    display: flex;
+}
+
+.stData {
+    padding: 1em;
+    height: 100%;
+    width: 70%;
+}
+
+.stData h3 {
+    font-size: 1em;
+}
+
+.stData h3 span {
+    padding-left: 1em;
+}
+
+.stImg {
+    position: relative;
+    right: 7.5em;
+    bottom: 3.55em;
+    width: 30%;
+}
+
+.stLevels {
+    padding-left: 1em;
+    width: 30%;
+}
+
+.stLevels h3 {
+    font-weight: 300;
+    position: relative;
+    top: -1.2em;
+}
+
+.stBtnLevels {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    top: -2em;
+    height: 90%;
+}
+
+.btnLevel {
+    background-color: var(--level-bg);
+    border: none;
+    color: var(--text-color);
+    font-size: large;
+    height: 9vh;
+    width: 100%;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.level {
+    background-color: var(--level-box);
+    height: 50px;
+    width: 50px;
+    border-radius: 6px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0.05em;
+}
+
+.level h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--level-text);
+}
+
+.state h2 {
+    font-size: 1em;
+    font-weight: 400;
+    padding-left: 1em;
+}

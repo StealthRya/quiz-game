@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Plateforme Quiz C</title>
+  <link rel="stylesheet" href="./CSS/level.css" />
+  <script src="https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs/loader.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Level 01: Firewall</h1> <!-- To make dynamic -->
+    </header>
+
+    <section class="quiz-area">
+      <div class="question-box">
+        <h2 id="question-title">Challenge <span>1</span>/20</h2><!-- To make dynamic -->
+        <p id="question-text">Écrivez un programme en C qui affiche "Bonjour le monde".</p><!-- To make dynamic -->
+      </div>
+
+      <div id="editor-container"></div>
+
+      <div class="buttons">
+        <button id="submit-code">Soumettre</button>
+        <button id="next-question">Suivant</button>
+      </div>
+
+      <div class="result-box">
+        <h3>Résultat :</h3>
+        <pre id="output">Cliquez sur "Soumettre" pour voir le résultat ici.</pre>
+      </div>
+    </section>
+  </div>
+
+  <script src="./JS/level.js"></script>
+</body>
+</html>

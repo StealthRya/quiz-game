@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Dashboard - Quiz C</title>
+  <link rel="stylesheet" href="./CSS/admin.css" />
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Admin Dashboard</h1>
+    </header>
+
+    <section class="admin-controls">
+      <div class="form-group">
+        <h2>Créer un niveau</h2>
+        <input type="text" placeholder="Nom du niveau" id="level-name" />
+        <button onclick="addLevel()">Ajouter le niveau</button>
+      </div>
+
+      <div class="form-group">
+        <h2>Ajouter un défi</h2>
+        <select id="level-select">
+          <option disabled selected>Choisir un niveau</option>
+          <!-- Les niveaux ajoutés dynamiquement ici -->
+        </select>
+        <textarea placeholder="Énoncé du défi" id="challenge-text"></textarea>
+        <textarea placeholder="Résultat attendu" id="expected-output"></textarea>
+        <button onclick="addChallenge()">Ajouter le défi</button>
+      </div>
+
+      <div class="form-group">
+        <h2>Voir la liste des défis</h2>
+        <a href="challenges.html">
+          <button>View Lists</button>
+        </a>
+      </div>
+    </section>
+  </div>
+
+  <script src="./JS/admin.js"></script>
+</body>
+</html>

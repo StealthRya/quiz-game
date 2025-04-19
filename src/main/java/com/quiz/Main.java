@@ -9,11 +9,18 @@ import java.util.Map;
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
 
+
+
+
+
+
+
+
 public class Main {
     public static void main(String[] args) {
         Javalin app = Javalin.create(config -> {
             config.addStaticFiles("/public", Location.CLASSPATH);
-        }).start(7070);
+        }).start(7000);
 
         // Redirection par défaut vers landing.html
         app.get("/", ctx -> ctx.redirect("/landing.html"));
@@ -25,7 +32,6 @@ public class Main {
             String password = ctx.formParam("password");
             String confirmPassword = ctx.formParam("confirm-password");
 
-            final String role = "player";
 
             if (!password.equals(confirmPassword)) {
                 ctx.status(400).result("Les mots de passe ne correspondent pas !");
@@ -33,23 +39,39 @@ public class Main {
             }
 
             try (Connection conn = DatabaseUtil.getConnection()) {
-                String query = "INSERT INTO users (pseudo,email,password,role) VALUES (?,?,?,?)";
-                PreparedStatement stmt = conn.prepareStatement(query);
-                stmt.setString(1, pseudo);
-                stmt.setString(2, email);
-                stmt.setString(3, password);
-                stmt.setString(4,role); // 🔒 À hasher plus tard
-
-                int rows = stmt.executeUpdate();
+                // Étape 1 : Insérer dans la table users
+                String queryUser = "INSERT INTO users (pseudo, email, password) VALUES (?, ?, ?)";
+                PreparedStatement stmtUser = conn.prepareStatement(queryUser, PreparedStatement.RETURN_GENERATED_KEYS);
+                stmtUser.setString(1, pseudo);
+                stmtUser.setString(2, email);
+                stmtUser.setString(3, password); // 🔒 À hasher plus tard
+            
+                int rows = stmtUser.executeUpdate();
                 if (rows > 0) {
-                    EmailSender.sendConfirmationEmail(email, pseudo, password);
-                    ctx.redirect("/login.html?success=1");
+                    // Étape 2 : Récupérer l'id généré
+                    ResultSet rs = stmtUser.getGeneratedKeys();
+                    if (rs.next()) {
+                        int userId = rs.getInt(1);
+            
+                        // Étape 3 : Créer le profil joueur associé
+                        String queryProfile = "INSERT INTO player_profiles (user_id) VALUES (?)";
+                        PreparedStatement stmtProfile = conn.prepareStatement(queryProfile);
+                        stmtProfile.setInt(1, userId);
+                        stmtProfile.executeUpdate();
+            
+                        // Envoi de mail + redirection
+                        EmailSender.sendConfirmationEmail(email, pseudo, password);
+                        ctx.redirect("/login.html?success=1");
+                    } else {
+                        ctx.status(500).result("Impossible de récupérer l'ID du nouvel utilisateur.");
+                    }
                 } else {
                     ctx.status(400).result("Erreur lors de l'inscription !");
                 }
             } catch (Exception e) {
                 ctx.status(500).result("Erreur serveur : " + e.getMessage());
             }
+            
         });
 
         // Connexion
@@ -58,7 +80,7 @@ public class Main {
             String password = ctx.formParam("password");
 
             try (Connection conn = DatabaseUtil.getConnection()) {
-                String query = "SELECT * FROM users WHERE email = ? AND player_password = ?";
+                String query = "SELECT * FROM users WHERE email = ? AND password = ?";
                 PreparedStatement stmt = conn.prepareStatement(query);
                 stmt.setString(1, email);
                 stmt.setString(2, password);
@@ -85,27 +107,33 @@ public class Main {
         // API pour dashboard
         app.get("/dashboard-data", ctx -> {
             Integer playerId = ctx.sessionAttribute("playerId");
-
+        
             if (playerId == null) {
                 ctx.status(401).json(Map.of("error", "Non autorisé"));
                 return;
             }
-
+        
             try (Connection conn = DatabaseUtil.getConnection()) {
-                String query = "SELECT pseudo, score FROM players WHERE id = ?";
+                String query = "SELECT u.pseudo, p.total_score, p.current_level " +
+                "FROM users u " +
+                "JOIN player_profiles p ON u.id = p.user_id " +
+                "WHERE u.id = ?";
+ 
+        
                 PreparedStatement stmt = conn.prepareStatement(query);
                 stmt.setInt(1, playerId);
                 ResultSet rs = stmt.executeQuery();
-
+        
                 if (rs.next()) {
                     String pseudo = rs.getString("pseudo");
-                    int score = rs.getInt("score");
-
+                    int score = rs.getInt("total_score");
+                    int level = rs.getInt("current_level");
+        
                     Map<String, Object> response = new HashMap<>();
                     response.put("pseudo", pseudo);
                     response.put("score", score);
-                    response.put("level", 1); // par défaut
-
+                    response.put("level", level);
+        
                     ctx.json(response);
                 } else {
                     ctx.status(404).json(Map.of("error", "Joueur introuvable."));
@@ -114,6 +142,8 @@ public class Main {
                 ctx.status(500).json(Map.of("error", "Erreur serveur : " + e.getMessage()));
             }
         });
+        
+        app.post("/submit-code", CodeCompiler::handleCodeSubmission);
 
         // Déconnexion
         app.get("/logout", ctx -> {

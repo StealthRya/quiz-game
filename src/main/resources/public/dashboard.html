@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Orbitron:wght@400..900&display=swap"
         rel="stylesheet">
@@ -38,13 +38,13 @@
             </div>
             <div class="dashboardRight">
                 <div class="welcome">
-                   
-                    <h3>Welcome back, <span class="player-pseudo">Ryko</span></h3>  <!-- To make dynamic -->
+
+                    <h3>Welcome back, <span id="player-pseudo">...</span></h3> <!-- To make dynamic -->
                     <div class="states">
                         <div class="stLeft">
                             <div class="stData">
-                                <h3>CURRENT LEVEL <span class="player-level"> 2</span> /4</h3>  <!-- To make dynamic -->
-                                <h3>TOTAL SCORE <span class="player-score">750</span> /400</h3>  <!-- To make dynamic -->
+                                <h3>CURRENT LEVEL <span id="player-level">...</span> /4</h3> <!-- To make dynamic -->
+                                <h3>TOTAL SCORE <span id="player-score">...</span> /400</h3> <!-- To make dynamic -->
                                 <h3>TIME REMAINING: <span id="timer">30:00</span></h3>
                             </div>
                             <div class="stImg">
@@ -70,10 +70,10 @@
                                     <div class="state">
                                         <h2>Completed</h2> <!-- To make dynamic -->
                                     </div>
-                                    
+
                                 </button>
                                 <button class="btnLevel" onclick="location.href=''">
-                                    <div class="level" >
+                                    <div class="level">
                                         <h2>03</h2>
                                     </div>
 
@@ -123,6 +123,24 @@
         // Mise à jour chaque seconde
         const timerInterval = setInterval(updateTimer, 1000);
         updateTimer(); // appel immédiat pour afficher 30:00 sans délai
+
+
+
+        // --- Chargement des données du joueur ---
+        fetch("/dashboard-data")
+            .then(response => {
+                if (!response.ok) throw new Error("Non autorisé ou erreur");
+                return response.json();
+            })
+            .then(data => {
+                document.getElementById("player-pseudo").textContent = data.pseudo;
+                document.getElementById("player-level").textContent = data.level;
+                document.getElementById("player-score").textContent = data.score;
+            })
+            .catch(error => {
+                console.error("Erreur lors du chargement du dashboard:", error);
+                window.location.href = "./login.html"; // redirection en cas de problème
+            });
     </script>
 
 </body>

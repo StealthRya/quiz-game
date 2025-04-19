@@ -1,4 +1,5 @@
 com/quiz/Main.class
+com/quiz/CodeCompiler.class
 com/quiz/EmailSender$1.class
 com/quiz/DatabaseUtil.class
 com/quiz/EmailSender.class

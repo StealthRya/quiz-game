@@ -1,14 +1,26 @@
-body{
+:root {
+    --bg-dark: #000000;
+    --bg-panel: #0d0d0d;
+    --green-matrix: #00ff00;
+    --green-matrix-soft: rgba(0, 255, 0, 0.2);
+    --green-glass: rgba(0, 255, 0, 0.1);
+    --border-green: rgba(0, 255, 0, 0.3);
+    --white: #ffffff;
+}
+
+body {
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
     font-family: sans-serif;
     overflow-y: hidden;
+    background-color: var(--bg-dark);
+    color: var(--green-matrix);
 }
 
 /* ---------------LANDING PAGE--------------- */
 
-.motherContainer{
+.motherContainer {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -18,14 +30,14 @@ body{
 
 .centeredContainer,
 .registerCenteredContainer,
-.dashboardCenteredContainer{
+.dashboardCenteredContainer {
     width: 1015px;
     height: 560px;
-    background-color: #14133F;
+    background-color: var(--bg-panel);
     border-radius: 12px;
 }
 
-.logo{
+.logo {
     height: 13vh;
     width: 100%;
     display: flex;
@@ -33,28 +45,26 @@ body{
     padding-left: 1em;
 }
 
-.solid{
+.solid {
     position: absolute;
     top: 50vh;
     left: 67vw;
 }
 
-.narrativeText{
+.narrativeText {
     height: 60vh;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    color: white;
+    color: var(--green-matrix);
     position: relative;
     z-index: 1;
-    font-family:'Orbitron',sans-serif;
+    font-family: 'Orbitron', sans-serif;
 }
 
-
-
-.centeredText{
+.centeredText {
     height: 90%;
     width: 702px;
     display: flex;
@@ -63,7 +73,7 @@ body{
     font-size: 1.5em;
 }
 
-.buttons{
+.buttons {
     height: 20%;
     width: 702px;
     display: flex;
@@ -71,62 +81,61 @@ body{
     justify-content: space-between;
 }
 
-.buttons button{
+.buttons button {
     width: 226px;
 }
 
 .buttons button,
-.registerRight form button{
+.registerRight form button {
     height: 56px;
     border: none;
     border-radius: 50px;
     font-size: 1em;
-    color: white;
-    background: rgba(255, 255, 255, 0.1); /* verre léger */
+    color: var(--green-matrix);
+    background: var(--green-glass);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--border-green);
+    box-shadow: 0 4px 30px rgba(0, 255, 0, 0.1);
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .buttons button:hover,
-.registerRight form button:hover{
-    background: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 6px 40px rgba(0, 0, 0, 0.2);
+.registerRight form button:hover {
+    background: var(--green-matrix-soft);
+    box-shadow: 0 6px 40px rgba(0, 255, 0, 0.2);
 }
 
-
 /* ---------------REGISTER PAGE--------------- */
-.registerCenteredContainer{
+.registerCenteredContainer {
     display: flex;
 }
 
-.registerLeft{
+.registerLeft {
     height: 100%;
     width: 500px;
     padding: 1em;
 }
 
-.registerRight{
+.registerRight {
     height: 100%;
     width: 100%;
 }
 
-.registerRight h1{
-    color: white;
-    font-family: 'Audiowide',sans-serif;
+.registerRight h1 {
+    color: var(--green-matrix);
+    font-family: 'Audiowide', sans-serif;
 }
 
-.registerRight form{
+.registerRight form {
     height: 70%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
 }
 
-.registerRight form input{
+.registerRight form input {
     padding: 0.2em;
     height: 7vh;
     width: 95%;
@@ -134,36 +143,37 @@ body{
     border: none;
     outline: none;
     font-size: 1em;
+    background-color: var(--bg-dark);
+    color: var(--green-matrix);
+    border: 1px solid var(--border-green);
 }
 
-.registerRight form button{
+.registerRight form button {
     margin-top: 2vh;
     width: 97%;
 }
 
-.loginLink{
+.loginLink {
     width: 100%;
 }
 
-.registerRight h6{
-    color: white;
+.registerRight h6 {
+    color: var(--green-matrix);
     font-size: 1em;
     font-weight: lighter;
 }
 
-.registerRight h6 a{
-    color: white;
+.registerRight h6 a {
+    color: var(--green-matrix);
     text-decoration: none;
     font-size: 1em;
     font-weight: bold;
 }
 
-
-
 /* ---------------LOGIN PAGE--------------- */
 .toggle-password {
     cursor: pointer;
-    color:white;
+    color: var(--green-matrix);
     text-align: right;
     padding-right: 1.5em;
     text-decoration: underline;
@@ -173,38 +183,36 @@ body{
     text-decoration: none;
 }
 
-
-
-
 /* ---------------DASHBOARD PAGE--------------- */
-.dashboardCenteredContainer{
+.dashboardCenteredContainer {
     display: flex;
 }
 
-.dashboardLeft{
+.dashboardLeft {
     height: 100%;
     width: 15%;
     display: flex;
+    background-color: var(--bg-panel);
 }
 
-.dshbLeft{
+.dshbLeft {
     width: 99%;
     padding: 1em;
 }
 
-.dshbRight{
-    background-color: white;
+.dshbRight {
+    background-color: var(--green-matrix);
     width: 1%;
 }
 
-.menuBtnDshb{
+.menuBtnDshb {
     height: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
 }
 
-.navigationbtn{
+.navigationbtn {
     padding-top: 3em;
     height: 18%;
     display: flex;
@@ -212,10 +220,10 @@ body{
     justify-content: space-between;
 }
 
-.btnNav{
+.btnNav {
     background-color: transparent;
     border: none;
-    color: white;
+    color: var(--green-matrix);
     font-size: large;
     height: 5vh;
     width: 100%;
@@ -225,37 +233,36 @@ body{
     cursor: pointer;
 }
 
-.btnNav:hover{
-    background-color:rgba(255, 255, 255, 0.589);
-    color: white;
-
+.btnNav:hover {
+    background-color: var(--green-matrix-soft);
 }
 
-.fas{
+.fas {
     margin-right: 1em;
 }
 
-.dashboardRight{
+.dashboardRight {
     height: 100%;
     width: 85%;
     padding-left: 2em;
+    background-color: var(--bg-dark);
 }
 
 .welcome h3,
-.welcome span{
-    color: white;
+.welcome span {
+    color: var(--green-matrix);
 }
 
-.welcome h3{
-    font-family: 'Orbitron',sans-serif;
+.welcome h3 {
+    font-family: 'Orbitron', sans-serif;
     font-weight: lighter;
 }
 
-.welcome span{
-   font-weight: bold;
+.welcome span {
+    font-weight: bold;
 }
 
-.states{
+.states {
     width: 96%;
     height: 45vh;
     display: flex;
@@ -264,44 +271,46 @@ body{
 .stLeft {
     height: 100%;
     width: 70%;
-    background: linear-gradient(to bottom, #6A4A75, #DC755F);
+    background: linear-gradient(to bottom, #003300, #004d00);
     border-radius: 18px;
     display: flex;
 }
 
-.stData{
+.stData {
     padding: 1em;
     height: 100%;
     width: 70%;
 }
 
-.stData h3{
+.stData h3 {
     font-size: 1em;
+    color: var(--green-matrix);
 }
 
-.stData h3 span{
+.stData h3 span {
     padding-left: 1em;
 }
 
-.stImg{
+.stImg {
     position: relative;
     right: 7.5em;
     bottom: 3.55em;
     width: 30%;
 }
 
-.stLevels{
+.stLevels {
     padding-left: 1em;
     width: 30%;
 }
 
-.stLevels h3{
+.stLevels h3 {
     font-weight: 300;
     position: relative;
     top: -1.2em;
+    color: var(--green-matrix);
 }
 
-.stBtnLevels{
+.stBtnLevels {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -310,11 +319,10 @@ body{
     height: 90%;
 }
 
-
-.btnLevel{
-    background-color: rgba(255, 255, 255, 0.50);
+.btnLevel {
+    background-color: var(--green-glass);
     border: none;
-    color: white;
+    color: var(--green-matrix);
     font-size: large;
     height: 9vh;
     width: 100%;
@@ -324,8 +332,8 @@ body{
     cursor: pointer;
 }
 
-.level{
-    background-color: white;
+.level {
+    background-color: var(--green-matrix);
     height: 50px;
     width: 50px;
     border-radius: 6px;
@@ -335,13 +343,14 @@ body{
     margin-left: 0.05em;
 }
 
-.level h2{
-    font-family: 'Orbitron',sans-serif;
-    color: black;
+.level h2 {
+    font-family: 'Orbitron', sans-serif;
+    color: var(--bg-dark);
 }
 
-.state h2{
+.state h2 {
     font-size: 1em;
     font-weight: 400;
     padding-left: 1em;
+    color: var(--green-matrix);
 }
