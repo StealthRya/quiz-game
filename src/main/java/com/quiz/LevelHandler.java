@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 
 public class LevelHandler {
+    //Otenir tous les niveaux et les challenges (juste les questions)
     public static void getLevelAndChallenges(Context ctx){
         //Lire l'id du niveau selectionner par le user depuis l'URL
         int levelId = Integer.parseInt(ctx.pathParam("id"));
@@ -56,6 +57,8 @@ public class LevelHandler {
         }
     }
 
+
+    //Obtenir uniquement les niveaux
     public static void getAllLevels(Context ctx) {
     try (Connection conn = DatabaseUtil.getConnection()) {
         String query = "SELECT * FROM levels";
@@ -76,5 +79,6 @@ public class LevelHandler {
         ctx.status(500).result("Erreur serveur: " + e.getMessage());
     }
 }
+
 
 }

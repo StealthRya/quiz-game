@@ -41,7 +41,13 @@ function loadMonacoEditor() {
   require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs' } });
   require(['vs/editor/editor.main'], function () {
     window.editor = monaco.editor.create(document.getElementById('editor-container'), {
-      value: '// Tapez votre code ici\n',
+      value: `#include <stdio.h>
+
+int main() {
+    // Tapez votre code ici
+    return 0;
+}
+`,
       language: 'c',
       theme: 'vs-dark',
       automaticLayout: true
@@ -63,7 +69,32 @@ document.getElementById("next-question").addEventListener("click", () => {
   }
 });
 
-document.getElementById("submit-code").addEventListener("click", () => {
+document.getElementById("submit-code").addEventListener("click", async () => {
   const userCode = window.editor.getValue();
-  document.getElementById("output").textContent = `Code soumis :\n\n${userCode}`;
+  const levelId = getLevelIdFromURL();
+  const challenge = challenges[currentQuestionIndex];
+  const challengeId = challenge.id;
+
+  try {
+    const response = await fetch('http://localhost:7000/submit', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        levelId,
+        challengeId,
+        code: userCode
+      })
+    });
+
+    const result = await response.json();
+
+    // Affichage complet du message et du output utilisateur
+    document.getElementById("output").textContent =
+      `++Sortie du programme :\n${result.output}\n\n++ Résultat : ${result.message}`;
+
+  } catch (error) {
+    document.getElementById("output").textContent = "❌ Erreur : " + error.message;
+  }
 });

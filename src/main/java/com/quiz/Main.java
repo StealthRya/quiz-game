@@ -149,8 +149,9 @@ public class Main {
         //API pour la page level (Charger les niveaux et les defis correspondant au choix du user)
         app.get("/levelAndChallenge/:id", LevelHandler::getLevelAndChallenges);
         
-        app.post("/submit-code", CodeCompiler::handleCodeSubmission);
 
+        //Route pour gerer la soumission du code
+        app.post("/submit",SubmissionHandler::handleSubmit);
 
 
          // Middleware CORS
