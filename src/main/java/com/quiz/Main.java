@@ -142,8 +142,26 @@ public class Main {
                 ctx.status(500).json(Map.of("error", "Erreur serveur : " + e.getMessage()));
             }
         });
+
+        //Deuxieme API pour dashboard
+        app.get("/levels", LevelHandler::getAllLevels);
+
+        //API pour la page level (Charger les niveaux et les defis correspondant au choix du user)
+        app.get("/levelAndChallenge/:id", LevelHandler::getLevelAndChallenges);
         
         app.post("/submit-code", CodeCompiler::handleCodeSubmission);
+
+
+
+         // Middleware CORS
+         app.before(ctx -> {
+            ctx.header("Access-Control-Allow-Origin", "*");
+            ctx.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+            ctx.header("Access-Control-Allow-Headers", "Content-Type");
+        });
+
+        
+
 
         // Déconnexion
         app.get("/logout", ctx -> {

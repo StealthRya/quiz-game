@@ -1,33 +1,69 @@
-let editor;
+function getLevelIdFromURL() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('id');
+}
 
-require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs' } });
-require(['vs/editor/editor.main'], function () {
-  editor = monaco.editor.create(document.getElementById('editor-container'), {
-    value: `#include <stdio.h>\n\nint main() {\n    printf("Bonjour le monde");\n    return 0;\n}`,
-    language: 'c',
-    theme: 'vs-dark',
-    fontSize: 14,
-    automaticLayout: true
-  });
+let currentQuestionIndex = 0;
+let challenges = [];
+
+document.addEventListener("DOMContentLoaded", async () => {
+  const levelId = getLevelIdFromURL();
+  if (!levelId) return alert("Aucun niveau spécifié dans l'URL");
+
+  try {
+    const response = await fetch(`http://localhost:7000/levelAndChallenge/${levelId}`);
+    if (!response.ok) throw new Error("Niveau non trouvé");
+    
+    const levelData = await response.json();
+    document.getElementById("level-title").textContent = `Level ${levelData.id}: ${levelData.title}`;
+
+    challenges = levelData.challenge;
+    document.getElementById("total-questions").textContent = challenges.length;
+
+    displayQuestion();
+
+    loadMonacoEditor();
+
+  } catch (error) {
+    alert("Erreur lors du chargement des données : " + error.message);
+  }
 });
 
-document.getElementById('submit-code').addEventListener('click', async () => {
-  const code = editor.getValue();
+function displayQuestion() {
+  if (!challenges.length) return;
 
-  const response = await fetch('/submit-code', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    body: `code=${encodeURIComponent(code)}`
+  const question = challenges[currentQuestionIndex];
+  document.getElementById("question-number").textContent = currentQuestionIndex + 1;
+  document.getElementById("question-text").textContent = question.questionText;
+}
+
+function loadMonacoEditor() {
+  require.config({ paths: { vs: 'https://cdn.jsdelivr.net/npm/monaco-editor@latest/min/vs' } });
+  require(['vs/editor/editor.main'], function () {
+    window.editor = monaco.editor.create(document.getElementById('editor-container'), {
+      value: '// Tapez votre code ici\n',
+      language: 'c',
+      theme: 'vs-dark',
+      automaticLayout: true
+    });
   });
+}
 
-  const output = await response.text();
-  document.getElementById('output').textContent = output;
+document.getElementById("prev-question").addEventListener("click", () => {
+  if (currentQuestionIndex > 0) {
+    currentQuestionIndex--;
+    displayQuestion();
+  }
 });
 
-document.getElementById('next-question').addEventListener('click', () => {
-  // Exemple de question suivante (à adapter dynamiquement depuis une base ou liste)
-  document.getElementById('question-title').textContent = "Question 2";
-  document.getElementById('question-text').textContent = "Écrivez un programme en C qui calcule la somme de deux entiers.";
-  editor.setValue(`#include <stdio.h>\n\nint main() {\n    int a, b;\n    scanf("%d %d", &a, &b);\n    printf("%d", a + b);\n    return 0;\n}`);
-  document.getElementById('output').textContent = "Cliquez sur \"Soumettre\" pour voir le résultat ici.";
+document.getElementById("next-question").addEventListener("click", () => {
+  if (currentQuestionIndex < challenges.length - 1) {
+    currentQuestionIndex++;
+    displayQuestion();
+  }
+});
+
+document.getElementById("submit-code").addEventListener("click", () => {
+  const userCode = window.editor.getValue();
+  document.getElementById("output").textContent = `Code soumis :\n\n${userCode}`;
 });

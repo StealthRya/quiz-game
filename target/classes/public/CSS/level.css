@@ -75,12 +75,16 @@ header h1 {
 
 .buttons {
   display: flex;
-  justify-content: space-between;
-  margin-top: 1em;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin-top: 1.5em;
 }
 
 .buttons button {
-  width: 48%;
+  flex: 1 1 30%;
+  min-width: 100px;
+  max-width: 200px;
   padding: 1em;
   font-size: 1em;
   color: var(--text-color);
@@ -93,6 +97,7 @@ header h1 {
   box-shadow: 0 4px 30px var(--glass-shadow);
   transition: all 0.3s ease;
 }
+
 
 .buttons button:hover {
   background: var(--glass-bg-hover);

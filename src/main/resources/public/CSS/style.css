@@ -303,55 +303,41 @@ body {
 
 .stLevels {
     padding-left: 1em;
-    width: 30%;
+    width: 35%;
 }
 
 .stLevels h3 {
-    font-weight: 300;
+    font-weight: auto;
     position: relative;
     top: -1.2em;
 }
 
+/* Styles pour les boutons de niveaux */
 .stBtnLevels {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    top: -2em;
-    height: 90%;
+   display: flex;
+   flex-direction: column;
+   height: 8vh;
+   gap: 1em;
+   cursor: pointer;
 }
 
-.btnLevel {
-    background-color: var(--level-bg);
-    border: none;
-    color: var(--text-color);
-    font-size: large;
-    height: 9vh;
-    width: 100%;
-    border-radius: 12px;
+.info{
+    height: 100%;
     display: flex;
+    justify-content: left;
     align-items: center;
-    cursor: pointer;
+    gap: 2em;
 }
 
-.level {
-    background-color: var(--level-box);
-    height: 50px;
-    width: 50px;
-    border-radius: 6px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-left: 0.05em;
+
+
+
+.stBtnLevels h2 {
+    font-size: 1.5em; /* Taille de la police pour l'ID du niveau */
 }
 
-.level h2 {
-    font-family: 'Orbitron', sans-serif;
-    color: var(--level-text);
-}
 
-.state h2 {
-    font-size: 1em;
-    font-weight: 400;
-    padding-left: 1em;
-}
+
+
+
+

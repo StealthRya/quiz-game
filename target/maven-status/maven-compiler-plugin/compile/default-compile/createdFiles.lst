@@ -1,5 +1,8 @@
 com/quiz/Main.class
 com/quiz/CodeCompiler.class
-com/quiz/EmailSender$1.class
-com/quiz/DatabaseUtil.class
 com/quiz/EmailSender.class
+com/quiz/Challenges.class
+com/quiz/EmailSender$1.class
+com/quiz/Level.class
+com/quiz/DatabaseUtil.class
+com/quiz/LevelHandler.class
