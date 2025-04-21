@@ -3,6 +3,7 @@ com/quiz/EvaluationResult.class
 com/quiz/CodeSubmission.class
 com/quiz/CodeEvaluator.class
 com/quiz/EmailSender.class
+com/quiz/PlayerProfileDao.class
 com/quiz/Challenges.class
 com/quiz/EmailSender$1.class
 com/quiz/ChallengeDao.class
