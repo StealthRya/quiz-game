@@ -1,7 +1,9 @@
 com/quiz/model/EvaluationResult.class
 com/quiz/Main.class
 com/quiz/service/CodeEvaluator.class
+com/quiz/service/RankingService.class
 com/quiz/model/ChallengeAdmin.class
+com/quiz/controllers/RankingController.class
 com/quiz/service/SubmissionHandler.class
 com/quiz/service/ChallengeAdminController.class
 com/quiz/model/CodeSubmission.class
@@ -10,6 +12,7 @@ com/quiz/dao/PlayerProfileDao.class
 com/quiz/service/LevelHandler.class
 com/quiz/model/Level.class
 com/quiz/dao/ChallengeDao.class
+com/quiz/model/RankingModel.class
 com/quiz/model/Challenges.class
 com/quiz/utils/EmailSender$1.class
 com/quiz/utils/DatabaseUtil.class

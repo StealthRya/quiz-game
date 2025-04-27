@@ -1,4 +1,6 @@
+/home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/model/RankingModel.java
 /home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/dao/ChallengeAdminDao.java
+/home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/controllers/RankingController.java
 /home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/service/CodeEvaluator.java
 /home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/utils/DatabaseUtil.java
 /home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/service/SubmissionHandler.java
@@ -6,6 +8,7 @@
 /home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/model/Level.java
 /home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/service/ChallengeAdminController.java
 /home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/service/LevelHandler.java
+/home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/service/RankingService.java
 /home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/Main.java
 /home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/model/ChallengeAdmin.java
 /home/ryko/CascadeProjects/quiz-game/src/main/java/com/quiz/dao/PlayerProfileDao.java

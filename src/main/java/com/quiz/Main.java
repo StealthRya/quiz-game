@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.quiz.controllers.RankingController;
 import com.quiz.service.ChallengeAdminController;
 import com.quiz.service.LevelHandler;
 import com.quiz.service.SubmissionHandler;
@@ -164,7 +165,7 @@ public class Main {
         // Set up the routes for the challenges
         challengeAdminController.setupRoutes(app);
 
-
+        //API pour ajouter un niveau dans la data base 
         app.post("/addLevel", ctx -> {
             String levelName = ctx.formParam("levelName");
         
@@ -199,6 +200,9 @@ public class Main {
             }
         });
         
+        //API de classement des joueurs par score
+        app.get("/ranking", RankingController::getRanking);
+
 
 
          // Middleware CORS
