@@ -6,6 +6,12 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.quiz.service.ChallengeAdminController;
+import com.quiz.service.LevelHandler;
+import com.quiz.service.SubmissionHandler;
+import com.quiz.utils.DatabaseUtil;
+import com.quiz.utils.EmailSender;
+
 import io.javalin.Javalin;
 import io.javalin.http.staticfiles.Location;
 
@@ -153,6 +159,47 @@ public class Main {
         //Route pour gerer la soumission du code
         app.post("/submit",SubmissionHandler::handleSubmit);
 
+        // Create an instance of the ChallengeAdminController
+        ChallengeAdminController challengeAdminController = new ChallengeAdminController();
+        // Set up the routes for the challenges
+        challengeAdminController.setupRoutes(app);
+
+
+        app.post("/addLevel", ctx -> {
+            String levelName = ctx.formParam("levelName");
+        
+            // Vérifie que le niveau a bien été envoyé
+            if (levelName == null || levelName.trim().isEmpty()) {
+                ctx.status(400); // Envoie une réponse "Bad Request" si le niveau est vide
+                ctx.result("Le nom du niveau est requis");
+                return;
+            }
+        
+            try (Connection conn = DatabaseUtil.getConnection()) {
+                String query = "INSERT INTO levels (title) VALUES (?)";
+                PreparedStatement stmt = conn.prepareStatement(query);
+        
+                // Injecte le levelName dans la requête
+                stmt.setString(1, levelName);
+        
+                // Exécute la requête
+                int rowsAffected = stmt.executeUpdate();
+        
+                if (rowsAffected > 0) {
+                    System.out.println("Niveau ajouté avec succès !");
+                    ctx.status(200).result("Niveau ajouté avec succès !");
+                } else {
+                    System.out.println("Échec de l'ajout du niveau.");
+                    ctx.status(500).result("Erreur lors de l'ajout du niveau.");
+                }
+        
+            } catch (Exception e) {
+                e.printStackTrace();
+                ctx.status(500).result("Erreur de connexion à la base de données.");
+            }
+        });
+        
+
 
          // Middleware CORS
          app.before(ctx -> {
@@ -161,6 +208,7 @@ public class Main {
             ctx.header("Access-Control-Allow-Headers", "Content-Type");
         });
 
+        
         
 
 

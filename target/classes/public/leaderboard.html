@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Matrix C Quiz - Leaderboard</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&family=Audiowide&display=swap">
+    <link rel="stylesheet" href="./CSS/lead.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="dashboard-page">
+    <div class="matrix-background"></div>
+    
+    <!-- Top Navigation -->
+    <nav class="dashboard-nav">
+        <div class="nav-logo">
+            <i class="fas fa-code"></i>
+            <span>Matrix C Quiz</span>
+        </div>
+        <div class="nav-user">
+            <span class="username">Neo</span>
+            <a href="./dashboard.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                Back to Dashboard
+            </a>
+        </div>
+    </nav>
+
+    <main class="leaderboard-content">
+        <h1 class="leaderboard-title">
+            <i class="fas fa-trophy"></i>
+            Global Rankings
+        </h1>
+
+      
+
+        <!-- Leaderboard Table -->
+        <div class="leaderboard-table">
+            <!-- Top 3 Players -->
+            <div class="top-players">
+                <!-- Second Place -->
+                <div class="top-player silver">
+                    <div class="rank">2</div>
+                    <div class="crown"><i class="fas fa-crown"></i></div>
+                    <div class="username">Trinity</div>
+                    <div class="score">950</div>
+                </div>
+
+                <!-- First Place -->
+                <div class="top-player gold">
+                    <div class="rank">1</div>
+                    <div class="crown"><i class="fas fa-crown"></i></div>
+                    <div class="username">Morpheus</div>
+                    <div class="score">1200</div>
+                </div>
+
+                <!-- Third Place -->
+                <div class="top-player bronze">
+                    <div class="rank">3</div>
+                    <div class="crown"><i class="fas fa-crown"></i></div>
+                    <div class="username">Tank</div>
+                    <div class="score">800</div>
+                </div>
+            </div>
+
+            <!-- Other Players Table -->
+            <table class="rankings-table">
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Username</th>
+                        <th>Score</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>4</td>
+                        <td>Switch</td>
+                        <td>750</td>
+                    </tr>
+                    <tr class="current-player">
+                        <td>5</td>
+                        <td>Neo</td>
+                        <td>700</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Dozer</td>
+                        <td>650</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Mouse</td>
+                        <td>600</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Cypher</td>
+                        <td>550</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Oracle</td>
+                        <td>500</td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Link</td>
+                        <td>450</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </main>
+
+    <script>
+        // Search functionality
+        const searchInput = document.querySelector('.search-input');
+        const tableRows = document.querySelectorAll('.rankings-table tbody tr');
+
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            tableRows.forEach(row => {
+                const username = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+                row.style.display = username.includes(searchTerm) ? '' : 'none';
+            });
+        });
+    </script>
+</body>
+</html>

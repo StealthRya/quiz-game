@@ -1,0 +1,198 @@
+:root {
+    --main-bg-color: #14133F;
+    --gradient-start: #6A4A75;
+    --gradient-end: #DC755F;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-bg-hover: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-shadow: rgba(0, 0, 0, 0.1);
+    --glass-shadow-hover: rgba(0, 0, 0, 0.2);
+    --text-color: white;
+    --btn-bg-hover: rgba(255, 255, 255, 0.589);
+}
+
+/* Global styles */
+body {
+    font-family: 'Orbitron', sans-serif;
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 0;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--glass-bg);
+    box-shadow: 0 0 10px var(--glass-shadow);
+    border-radius: 10px;
+}
+
+/* Navigation bar */
+.dashboard-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--glass-bg);
+    box-shadow: 0 0 5px var(--glass-shadow);
+    border-radius: 10px;
+}
+
+.dashboard-nav .nav-logo {
+    font-size: 1.5em;
+    color: var(--text-color);
+}
+
+.dashboard-nav .nav-user {
+    display: flex;
+    align-items: center;
+}
+
+.dashboard-nav .nav-user .username {
+    margin-right: 10px;
+    font-weight: 500;
+}
+
+.dashboard-nav .nav-user .back-btn {
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1em;
+}
+
+/* Leaderboard content */
+.leaderboard-content {
+    padding: 20px;
+}
+
+/* Title */
+.leaderboard-title {
+    font-size: 2.5em;
+    color: var(--text-color);
+    text-align: center;
+}
+
+/* Search Bar */
+.search-container {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.search-input {
+    padding: 10px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    border: none;
+    width: 80%;
+    max-width: 400px;
+    background-color: var(--glass-bg);
+    color: var(--text-color);
+    box-shadow: 0 0 5px var(--glass-shadow);
+}
+
+.search-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+/* Leaderboard Table */
+.leaderboard-table {
+    margin-top: 20px;
+}
+
+.top-players {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.top-player {
+    background-color: var(--glass-bg);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--glass-shadow);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.top-player .rank {
+    font-size: 2em;
+    font-weight: bold;
+    color: var(--text-color);
+}
+
+.top-player .crown {
+    color: gold;
+    margin-top: 10px;
+}
+
+.top-player .username {
+    font-size: 1.5em;
+    color: var(--text-color);
+}
+
+.top-player .score {
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+
+.top-player .details {
+    font-size: 1em;
+    color: var(--text-color);
+    margin-top: 10px;
+}
+
+.top-player.silver {
+    background-color: rgba(192, 192, 192, 0.3);
+}
+
+.top-player.gold {
+    background-color: rgba(255, 223, 0, 0.3);
+}
+
+.top-player.bronze {
+    background-color: rgba(205, 127, 50, 0.3);
+}
+
+.rankings-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 30px;
+    background-color: var(--glass-bg);
+    border-radius: 10px;
+    box-shadow: 0 0 10px var(--glass-shadow);
+}
+
+.rankings-table th,
+.rankings-table td {
+    padding: 15px;
+    text-align: center;
+    color: var(--text-color);
+}
+
+.rankings-table th {
+    background-color: var(--gradient-start);
+    color: white;
+}
+
+.rankings-table tr:nth-child(even) {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.rankings-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.rankings-table .current-player {
+    background-color: rgba(255, 165, 0, 0.3);
+}
+
+/* Footer (if any) */
+footer {
+    background-color: var(--main-bg-color);
+    color: var(--text-color);
+    text-align: center;
+    padding: 10px;
+}

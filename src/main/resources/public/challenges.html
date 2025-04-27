@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8" />
     <title>Challenges List</title>
     <link rel="stylesheet" href="./CSS/challenges.css" />
 </head>
-
 <body>
     <div class="container">
         <header>
@@ -16,122 +14,12 @@
 
         <section class="quiz-area">
             <div class="level-container" id="challenge-list">
-                <!-- Challenges will be dynamically injected here -->
+                <!-- Challenges will be dynamically injected here by JavaScript -->
             </div>
         </section>
     </div>
 
-    <script>
-        // Example structure of the challenges data
-        window.addEventListener("DOMContentLoaded", () => {
-            fetch("/challenges")
-                .then(response => response.json())
-                .then(data => {
-                    const challengesData = data;
-                    // tout le reste de ton code de rendu ici (déjà prêt dans ton JS)
-                })
-                .catch(error => {
-                    console.error("Erreur lors de la récupération des données :", error);
-                });
-        });
-
-
-        const listContainer = document.getElementById("challenge-list");
-
-        function deleteLevel(levelId) {
-            const levelElement = document.getElementById(`level-${levelId}`);
-            levelElement.remove();
-            const levelIndex = challengesData.findIndex(level => level.levelId === levelId);
-            if (levelIndex !== -1) {
-                challengesData.splice(levelIndex, 1);
-            }
-        }
-
-        function deleteChallenge(levelId, challengeId) {
-            const level = challengesData.find(level => level.levelId === levelId);
-            if (level) {
-                const challengeIndex = level.challenges.findIndex(ch => ch.id === challengeId);
-                if (challengeIndex !== -1) {
-                    level.challenges.splice(challengeIndex, 1);
-                    const challengeElement = document.getElementById(`challenge-${challengeId}`);
-                    challengeElement.remove();
-                }
-            }
-        }
-
-        function editChallenge(levelId, challengeId) {
-            const level = challengesData.find(level => level.levelId === levelId);
-            const challenge = level?.challenges.find(ch => ch.id === challengeId);
-            if (challenge) {
-                const newText = prompt("Edit the challenge statement", challenge.text);
-                const newOutput = prompt("Edit the expected result", challenge.output);
-                if (newText !== null && newOutput !== null) {
-                    challenge.text = newText;
-                    challenge.output = newOutput;
-                    const challengeElement = document.getElementById(`challenge-${challengeId}`);
-                    challengeElement.querySelector(".challenge-text").textContent = `Challenge: ${newText}`;
-                    challengeElement.querySelector(".expected-output").textContent = `Expected result: ${newOutput}`;
-                }
-            }
-        }
-
-        challengesData.forEach((levelData) => {
-            const levelTitle = document.createElement("h2");
-            levelTitle.textContent = levelData.level;
-
-            const levelContainer = document.createElement("div");
-            levelContainer.id = `level-${levelData.levelId}`;
-            levelContainer.classList.add("level-item");
-
-            const levelActions = document.createElement("div");
-            levelActions.classList.add("level-actions");
-            const deleteLevelButton = document.createElement("button");
-            deleteLevelButton.textContent = "Delete Level";
-            deleteLevelButton.classList.add("delete-level-btn");
-            deleteLevelButton.onclick = () => deleteLevel(levelData.levelId);
-            levelActions.appendChild(deleteLevelButton);
-
-            const challengeListContainer = document.createElement("div");
-            challengeListContainer.classList.add("challenge-list");
-
-            levelData.challenges.forEach((challenge) => {
-                const challengeDiv = document.createElement("div");
-                challengeDiv.id = `challenge-${challenge.id}`;
-                challengeDiv.classList.add("challenge-item");
-
-                const question = document.createElement("p");
-                question.classList.add("challenge-text");
-                question.innerHTML = `<strong>Challenge:</strong> ${challenge.text}`;
-
-                const expected = document.createElement("pre");
-                expected.classList.add("expected-output");
-                expected.textContent = `Expected result: ${challenge.output}`;
-
-                const challengeActions = document.createElement("div");
-                challengeActions.classList.add("challenge-actions");
-                const editChallengeButton = document.createElement("button");
-                editChallengeButton.textContent = "Edit";
-                editChallengeButton.classList.add("edit-challenge-btn");
-                editChallengeButton.onclick = () => editChallenge(levelData.levelId, challenge.id);
-                const deleteChallengeButton = document.createElement("button");
-                deleteChallengeButton.textContent = "Delete";
-                deleteChallengeButton.classList.add("delete-challenge-btn");
-                deleteChallengeButton.onclick = () => deleteChallenge(levelData.levelId, challenge.id);
-                challengeActions.appendChild(editChallengeButton);
-                challengeActions.appendChild(deleteChallengeButton);
-
-                challengeDiv.appendChild(question);
-                challengeDiv.appendChild(expected);
-                challengeDiv.appendChild(challengeActions);
-                challengeListContainer.appendChild(challengeDiv);
-            });
-
-            levelContainer.appendChild(levelTitle);
-            levelContainer.appendChild(levelActions);
-            levelContainer.appendChild(challengeListContainer);
-            listContainer.appendChild(levelContainer);
-        });
-    </script>
+    <!-- Link to the JavaScript file -->
+    <script src="./JS/challengesAdmin.js"></script>
 </body>
-
 </html>
